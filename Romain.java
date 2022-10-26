@@ -1,18 +1,12 @@
 package zhayang;
 
-import java.lang.Thread.State;
-import java.sql.Statement;
 
-import javax.xml.ws.AsyncHandler;
 
 /**
  * @author HP
  *
  */
-/**
- * @author HP
- *
- */
+
 public class Romain {
 	private String nom;
 	private int force;
@@ -105,7 +99,7 @@ public class Romain {
 		//System.out.println(Equipement.CASQUE);
 		//romain.sEquiper(Equipement.CASQUE,romain.getNbEquipement());System.out.println(Equipement.BOUCLIER);
 		
-
+		// test
 		romain.sEquiper(Equipement.CASQUE,romain.getNbEquipement());
 		romain.sEquiper(Equipement.CASQUE,romain.getNbEquipement());
 		romain.sEquiper(Equipement.BOUCLIER,romain.getNbEquipement());
