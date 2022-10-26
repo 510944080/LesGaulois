@@ -1,5 +1,10 @@
 package zhayang;
 
+import java.lang.Thread.State;
+import java.sql.Statement;
+
+import javax.xml.ws.AsyncHandler;
+
 /**
  * @author HP
  *
@@ -11,7 +16,8 @@ package zhayang;
 public class Romain {
 	private String nom;
 	private int force;
-	
+	private Equipement[] equipement=new Equipement[2];
+	private int nbEquipement = 0;
 	
 	public Romain(String nom, int force) {
 		this.nom = nom;
@@ -26,7 +32,9 @@ public class Romain {
 		
 		return force;
 	}
-	
+	public int getNbEquipement(){
+		return nbEquipement;
+	}
 	
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "<< " + texte + ">>");
@@ -48,19 +56,60 @@ public class Romain {
 		}
 		
 		assert (force1>force):"force n'a pas diminue";
-	
 	}
+	
+	
+	public void sEquiper(Equipement equipement, int nbEquipement) {
+		
+		
+		switch (nbEquipement) {
+		case 2:
+			System.out.println("Le soldat "+ nom +" est déjà bien protégé ! " );
+			break;
+		
+		case 1:
+			if (this.equipement[0]==equipement) {
+				System.out.println("Le soldat "+ nom +"  possède déjà "+equipement.getNom());
+			}
+			else {
+				this.equipement[1]=equipement;
+				this.nbEquipement=nbEquipement+1;
+				System.out.println("Le soldat "+nom+" s’équipe avec un "+equipement.getNom());
+				System.out.println("Le soldat "+ nom +" est déjà bien protégé ! " );
+			}
+			break;
+		default:
+			this.equipement[0]=equipement;
+		 	this.nbEquipement=nbEquipement+1;
+		 	System.out.println("Le soldat "+nom+" s’équipe avec un "+equipement.getNom());
+		 	break;
+			
+		
+		}
+		
+	}
+	
+	
+	
 
 	
 
 	
 	public static void main(String[] args) {
 		//creat a romain 
-		Romain minus=new Romain("Minus", 6);
+		Romain romain=new Romain("Minus", 6);
 		//test for methodes
 		//System.out.println(minus.prendreParole());
-		minus.parler("un gau un gaugau");
-		minus.recevoirCoup(8);
+		romain.parler("un gau un gaugau");
+		romain.recevoirCoup(8);
+		//System.out.println(Equipement.CASQUE);
+		//romain.sEquiper(Equipement.CASQUE,romain.getNbEquipement());System.out.println(Equipement.BOUCLIER);
+		
+
+		romain.sEquiper(Equipement.CASQUE,romain.getNbEquipement());
+		romain.sEquiper(Equipement.CASQUE,romain.getNbEquipement());
+		romain.sEquiper(Equipement.BOUCLIER,romain.getNbEquipement());
+		
 		
 	}
 }
